@@ -6,7 +6,7 @@ export const MainPage = () => {
     <div className="page-bg">
       <MainHeader/>
       <div>
-        <Typography>Sample text</Typography>
+        {/* <Typography>Sample text</Typography> */}
       </div>
     </div>
   )

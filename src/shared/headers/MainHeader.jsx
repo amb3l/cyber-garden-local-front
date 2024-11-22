@@ -1,5 +1,5 @@
 import { AppBar, Box, Toolbar, Typography, Button, List } from '@mui/material'
-import './MainHeader.css'
+import AppLogo from '../../logo.svg'
 
 
 export const MainHeader = () => {
@@ -20,7 +20,11 @@ export const MainHeader = () => {
         alignItems: 'center'
       }}>
         {/* Content */}
-        <Typography color='black' variant='h5'>Logo</Typography>
+        {/* <Typography color='black' variant='h5'>Logo</Typography> */}
+
+        <img src={AppLogo} alt="App Logo" height={38}
+          className='cursor-pointer'
+        />
 
         <NavigationContent/>
 
@@ -32,23 +36,6 @@ export const MainHeader = () => {
 
 const NavigationContent = () => {
   return (
-    // <Box sx={{ 
-    //   display: 'flex', 
-    //   flexDirection: 'row', 
-    //   flexWrap: 'nowrap',
-    //   alignContent: 'normal',
-    //   justifyContent: 'normal', 
-    //   alignItems: 'normal',
-    //   marginLeft: 4
-    //   }}>
-      
-    //   <NavigationButton text={'Транзакции'}/>
-
-    //   <NavigationButton text={'Отчёты'}/>
-
-    //   <NavigationButton text={'Калькулятор процентов'}/>
-    // </Box>
-
     <List sx={{ 
         display: 'flex', 
         flexDirection: 'row', 
