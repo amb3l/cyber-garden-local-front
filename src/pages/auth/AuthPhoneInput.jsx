@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import MuiPhoneNumber from 'mui-phone-number'
+import { theme } from '../../mui_themes/MainTheme'
 
 
 export const AuthPhoneInput = ({handleOnChange, value}) => {
@@ -10,29 +11,30 @@ export const AuthPhoneInput = ({handleOnChange, value}) => {
   // }
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', my: '0.5rem' }}>
-      <Typography paddingLeft={'40px'} fontWeight={'500'} >Телефон</Typography>
-
-      <MuiPhoneNumber 
-        id='receiver-phone'
-        defaultCountry={'ru'} 
-        onChange={(str) => handleOnChange(str)}
-        value={ value } 
-        disableDropdown
-        variant='outlined'
-        placeholder="Телефон"
-        InputProps={{ 
-          sx: { 
-            borderRadius: '16px',
-            backgroundColor: '#efefee',
-            py: '0.2rem',
-          } 
-        }}
-        sx={{
-          marginLeft: 'auto',
-          width: '500px',
-        }}
-      />
-    </Box>
+    <MuiPhoneNumber 
+      defaultCountry={'ru'} 
+      onChange={(str) => handleOnChange(str) }
+      value={ value }
+      variant='outlined'
+      disableDropdown
+      placeholder="Телефон"
+      fullWidth
+      sx={{
+        backgroundColor: theme.palette.grey[100],
+        borderRadius: '0.5rem',
+        "& .MuiOutlinedInput-root": {
+          "& fieldset": {
+            border: "none"
+          },
+          "&:hover fieldset": {
+            borderColor: "green", // Hovered border color
+          },
+          "&.Mui-focused fieldset": {
+            border: "solid",
+            borderColor: "black", // Focused border color
+          },
+        },
+      }}
+    />
   )
 }

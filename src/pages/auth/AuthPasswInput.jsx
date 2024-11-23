@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material"
 import { theme } from "../../mui_themes/MainTheme"
 
-export const AuthTextInput = ({ placeholder, value, onChangeHandler }) => {
+export const AuthPasswInput = ({ placeholder, value, onChangeHandler }) => {
   return (
     <TextField
       // error={ error.length ? true : false }

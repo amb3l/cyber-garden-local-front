@@ -4,7 +4,6 @@ import { theme } from "../../mui_themes/MainTheme"
 
 export const AuthSubmitButton = ({ onClickHandler }) => {
   return (
-    <Box>
       <Button
         onClick= { onClickHandler }
         fullWidth
@@ -25,6 +24,5 @@ export const AuthSubmitButton = ({ onClickHandler }) => {
       >
         <ArrowForwardIosRoundedIcon/>
       </Button>
-    </Box>
   )
 }

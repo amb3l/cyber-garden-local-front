@@ -4,7 +4,7 @@ import { AuthWrapper } from "../auth/AuthBoxWrapper"
 
 export const MainPage = () => {
   return (
-    <div className="page-bg">
+    <div>
       <MainHeader/>
       {/* <AuthWrapper>
         <TextField/>

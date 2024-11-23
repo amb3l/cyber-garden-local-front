@@ -15,7 +15,7 @@ export const AuthWrapper = ({ children }) => {
         minWidth: '100%'
       }}
     >
-      <Paper sx={{ width: '500px' }}>
+      <Paper sx={{ width: '400px', padding: '3rem' }}>
         {children}
       </Paper>
     </Box>

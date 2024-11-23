@@ -19,7 +19,7 @@ export const theme = createTheme({
   //   },
   // },
   typography: {
-    fontFamily: '"Rubik", "Helvetica", "Arial", sans-serif', // Set your global font family here
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif', // Set your global font family here
     
     button: {
         textTransform: 'none', // Prevent uppercase transformation for buttons

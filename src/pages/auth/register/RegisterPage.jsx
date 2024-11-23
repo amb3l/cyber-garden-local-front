@@ -4,7 +4,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ErrorIcon from '@mui/icons-material/Error';
 import { theme } from '../../../mui_themes/MainTheme';
 import { AuthWrapper } from '../AuthBoxWrapper';
-import { AuthTextInput } from '../AuthTextInput';
+import { AuthPasswInput } from '../AuthPasswInput';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { AuthSubmitButton } from '../AuthSubmitButton';
 import { AuthPhoneInput } from '../AuthPhoneInput';
@@ -12,8 +12,9 @@ import { AuthPhoneInput } from '../AuthPhoneInput';
 
 export const RegisterPage = () => {
   const [error, setError] = useState('')
-  const [emailValue, setEmailValue] = useState('')
+  const [phoneValue, setPhoneValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
+  const [passwordReviseValue, setPasswordReviseValue] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   // const navigate = useNavigate()
   // const { login } = useContext(AuthContext)
@@ -38,19 +39,24 @@ export const RegisterPage = () => {
     console.log('Close')
   }
 
-  const handleEmailChange = (e) => {
-    setEmailValue(e.target.value)
+  const handlePhoneChange = (newValue) => {
+    setPhoneValue(newValue)
+    console.log(phoneValue)
   }
 
   const handlePasswordChange = (e) => {
     setPasswordValue(e.target.value)
   }
 
+  const handlePasswordReviseChange = (e) => {
+    setPasswordReviseValue(e.target.value)
+  }
+
 
   return (
     <Box>
       <AuthWrapper>
-        <Box margin={6}>
+        <Box>
 
           { isLoading ?
             <Box
@@ -94,9 +100,9 @@ export const RegisterPage = () => {
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'center', 
-            my: '2rem' }}>
+            mb: '2rem' }}>
             <Typography variant='h5' fontWeight={600}>
-              Войдите в аккаунт
+              Создать аккаунт
             </Typography>
           </Box>
 
@@ -117,8 +123,16 @@ export const RegisterPage = () => {
             : null
           } 
 
-          <Box sx={{ mb: '1rem' }}>
-            <AuthPhoneInput/>
+          <Box sx={{ mb: '0.5rem' }}>
+            <AuthPhoneInput value={phoneValue} handleOnChange={handlePhoneChange}/>
+          </Box>
+
+          <Box sx={{ mb: '0.5rem' }}>
+            <AuthPasswInput
+                placeholder= {'Пароль'} 
+                value= {passwordValue}
+                onChangeHandler= {handlePasswordChange} 
+              />
           </Box>
 
           <Box 
@@ -129,10 +143,10 @@ export const RegisterPage = () => {
             }}
           >
             
-            <AuthTextInput
-              placeholder= {'Пароль'} 
-              value= {passwordValue}
-              onChangeHandler= {handlePasswordChange} 
+            <AuthPasswInput
+              placeholder= {'Повтор пароля'} 
+              value= {passwordReviseValue}
+              onChangeHandler= {handlePasswordReviseChange} 
             />
 
             <AuthSubmitButton/>
