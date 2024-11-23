@@ -1,13 +1,14 @@
-import { Typography } from "@mui/material"
+import { TextField, Typography } from "@mui/material"
 import { MainHeader } from "../../shared/headers/MainHeader"
+import { AuthWrapper } from "../auth/AuthBoxWrapper"
 
 export const MainPage = () => {
   return (
     <div className="page-bg">
       <MainHeader/>
-      <div>
-        {/* <Typography>Sample text</Typography> */}
-      </div>
+      {/* <AuthWrapper>
+        <TextField/>
+      </AuthWrapper> */}
     </div>
   )
 }

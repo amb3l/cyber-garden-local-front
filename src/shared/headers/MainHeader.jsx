@@ -1,5 +1,7 @@
 import { AppBar, Box, Toolbar, Typography, Button, List } from '@mui/material'
 import AppLogo from '../../logo.svg'
+import { theme } from '../../mui_themes/MainTheme'
+import PersonIcon from '@mui/icons-material/Person'
 
 
 export const MainHeader = () => {
@@ -26,7 +28,7 @@ export const MainHeader = () => {
           className='cursor-pointer'
         />
 
-        <NavigationContent/>
+        <NavigationList/>
 
         <ProfileBlock/>
       </Toolbar>
@@ -34,7 +36,7 @@ export const MainHeader = () => {
   )
 }
 
-const NavigationContent = () => {
+const NavigationList = () => {
   return (
     <List sx={{ 
         display: 'flex', 
@@ -46,22 +48,22 @@ const NavigationContent = () => {
         marginLeft: 4
       }}
     >
-      <NavigationButton text={'Транзакции'}/>
+      <NavigationItem text={'Транзакции'}/>
 
-      <NavigationButton text={'Отчёты'}/>
+      <NavigationItem text={'Отчёты'}/>
 
-      <NavigationButton text={'Калькулятор процентов'}/>
+      <NavigationItem text={'Калькулятор процентов'}/>
     </List>
   )
 }
 
-const NavigationButton = ({text}) => {
+const NavigationItem = ({text}) => {
   return (
     <Button 
         // onClick={() => navigate('/services')}
         variant='text'
         sx={[
-          { borderRadius: 2, color: '#94949c', textTransform: 'none',
+          { borderRadius: 2, color: '#536470', textTransform: 'none',
             px: 1, py: 0.5
            },
           (theme) => ({
@@ -82,7 +84,7 @@ const ProfileBlock = () => {
       // onClick={() => navigate('/services')}
       variant='text'
       sx={[
-        { borderRadius: 2, color: 'blue', textTransform: 'none',
+        { borderRadius: 2, color: theme.palette.info, textTransform: 'none',
           padding: 1, marginLeft: 'auto'
           },
         (theme) => ({
@@ -92,10 +94,11 @@ const ProfileBlock = () => {
         }),
       ]}
     > 
-      <Box>
-        <Typography>
+      <Box sx={{ display: 'flex' }}>
+        <Typography variant='medium'>
           Личный кабинет
         </Typography>
+        <PersonIcon sx={{ pl: 1 }}/>
       </Box>
     </Button>
   )
