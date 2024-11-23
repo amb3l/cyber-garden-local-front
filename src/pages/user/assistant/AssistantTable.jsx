@@ -21,32 +21,25 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
-function createData(id, name, calories, fat, carbs, protein) {
+function createData(id, type, date, sum, category, commentary) {
   return {
     id,
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
+    type,
+    date,
+    sum,
+    category,
+    commentary
   };
 }
 
 const rows = [
-  createData(1, 'Cupcake', 305, 3.7, 67, 4.3),
-  createData(2, 'Donut', 452, 25.0, 51, 4.9),
-  createData(3, 'Eclair', 262, 16.0, 24, 6.0),
-  createData(4, 'Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData(5, 'Gingerbread', 356, 16.0, 49, 3.9),
-  createData(6, 'Honeycomb', 408, 3.2, 87, 6.5),
-  createData(7, 'Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData(8, 'Jelly Bean', 375, 0.0, 94, 0.0),
-  createData(9, 'KitKat', 518, 26.0, 65, 7.0),
-  createData(10, 'Lollipop', 392, 0.2, 98, 0.0),
-  createData(11, 'Marshmallow', 318, 0, 81, 2.0),
-  createData(12, 'Nougat', 360, 19.0, 9, 37.0),
-  createData(13, 'Oreo', 437, 18.0, 63, 4.0),
+  createData(1, 'Расход', '22 ноя 2024', 22000, 'Супермаркеты', 'Коммdfsdfsdfsdfsdfsdfsdjkasgdfkhsgтарий' ),
+  createData(2, 'Доход', '22 ноя 2024', 22000, 'Супермаркеты', 'Комментарий' ),
+  createData(3, 'Доход', '22 ноя 2024', 22000, 'Супермаркеты', 'Комментарий' ),
+  createData(4, 'Расход', '22 ноя 2024', 22000, 'Супермаркеты', 'Комментарий' ),
+  createData(5, 'Расход', '22 ноя 2024', 22000, 'Супермаркеты', 'Комментарий' )
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -67,34 +60,34 @@ function getComparator(order, orderBy) {
 
 const headCells = [
   {
-    id: 'name',
+    id: 'type',
     numeric: false,
-    disablePadding: true,
-    label: 'Dessert (100g serving)',
+    disablePadding: false,
+    label: 'Тип',
   },
   {
-    id: 'calories',
-    numeric: true,
+    id: 'date',
+    numeric: false,
     disablePadding: false,
-    label: 'Calories',
+    label: 'Дата',
   },
   {
-    id: 'fat',
-    numeric: true,
+    id: 'sum',
+    numeric: false,
     disablePadding: false,
-    label: 'Fat (g)',
+    label: 'Сумма',
   },
   {
-    id: 'carbs',
-    numeric: true,
+    id: 'category',
+    numeric: false,
     disablePadding: false,
-    label: 'Carbs (g)',
+    label: 'Категория',
   },
   {
-    id: 'protein',
-    numeric: true,
+    id: 'commentary',
+    numeric: false,
     disablePadding: false,
-    label: 'Protein (g)',
+    label: 'Комментарий',
   },
 ];
 
@@ -122,7 +115,7 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align='center'
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -155,7 +148,16 @@ EnhancedTableHead.propTypes = {
 };
 
 function EnhancedTableToolbar(props) {
-  const { numSelected } = props;
+  const { numSelected, selected } = props
+
+  const handleEditing = () => {
+    console.log('edit item with index', selected[0] )
+  }
+
+  const handleDeleating = () => {
+    console.log('delete item with index', selected[0] )
+  }
+
   return (
     <Toolbar
       sx={[
@@ -188,11 +190,19 @@ function EnhancedTableToolbar(props) {
         </Typography>
       )}
       {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
+        <Box display={'flex'}>
+          <Tooltip title="Edit">
+            <IconButton onClick={handleEditing}>
+              <EditRoundedIcon />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Delete">
+            <IconButton onClick={handleDeleating}>
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+        </Box>
       ) : (
         <Tooltip title="Filter list">
           <IconButton>
@@ -206,11 +216,12 @@ function EnhancedTableToolbar(props) {
 
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
+  selected: PropTypes.array.isRequired
 };
 
-export  function AssistantTable() {
+export function AssistantTable() {
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('date');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -276,9 +287,9 @@ export  function AssistantTable() {
   );
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ maxWidth: 700 }}>
       <Paper sx={{ width: '100%' }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} selected={selected}/>
         <TableContainer>
           <Table
             aria-labelledby="tableTitle"
@@ -321,22 +332,19 @@ export  function AssistantTable() {
                       component="th"
                       id={labelId}
                       scope="row"
-                      padding="none"
                     >
-                      {row.name}
+                      {row.type}
                     </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell align="center">{row.date}</TableCell>
+                    <TableCell align="center">{row.sum}</TableCell>
+                    <TableCell align="center">{row.category}</TableCell>
+                    <TableCell align="center" sx={{maxWidth: '20px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}}>{row.commentary}</TableCell>
                   </TableRow>
                 );
               })}
               {emptyRows > 0 && (
                 <TableRow
-                  style={{
-                    height: (dense ? 33 : 53) * emptyRows,
-                  }}
+                  sx={{ height: 'auto'}}
                 >
                   <TableCell colSpan={6} />
                 </TableRow>
