@@ -91,3 +91,16 @@ table {
 .hover-target:hover + .color-change {
     background-color: lightgreen; /* New color on hover */
 }
+
+.flex-item {
+  border-radius: 2rem; /* Rounded corners */
+}
+
+/* Remove padding from the first and last items */
+.flex-item:first-child {
+  margin-left: 0; /* No left margin on the first item */
+}
+
+.flex-item:last-child {
+  margin-right: 0; /* No right margin on the last item */
+}
