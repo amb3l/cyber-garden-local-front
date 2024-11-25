@@ -70,9 +70,10 @@ const TransactionsMenu = ({children}) => {
     setOpen((prev) => !prev)
   }
 
-  const handleEditBalanceSubmit = (event) => {
+  const handleEditBalanceSubmit = (newValue) => {
     console.log('balance changed')
-    
+    setBalanceValue(newValue)
+    setOpen((prev) => !prev);
   }
   
   
@@ -121,10 +122,12 @@ const TransactionsMenu = ({children}) => {
       
       <Box sx={{
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        gap: '1rem'
         }}
       >
-        <Box sx={{ width: '175px'}}>
+        
+        <Box sx={{ minWidth: '175px', width: '100%', display: 'block'}}>
           <ListGridItem>
             <Box display={'flex'} alignItems={'center'}>
               <Typography variant='caption' fontWeight={600}>
@@ -144,7 +147,7 @@ const TransactionsMenu = ({children}) => {
           </ListGridItem>
         </Box>
         
-        <Box sx={{ width: '175px' }}>
+        <Box sx={{ minWidth: '175px', width: '100%', display: 'block' }}>
           <ListGridItem>
             <Box display={'flex'} alignItems={'center'}>
               <Typography variant='caption' fontWeight={600}>

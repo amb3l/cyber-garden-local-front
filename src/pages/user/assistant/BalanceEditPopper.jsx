@@ -61,7 +61,7 @@ export default function BalanceEditPopper({
                 onChange={handleChangeValue}
               />
 
-              <IconButton onClick={handleSubmit(newValue)}>
+              <IconButton onClick={() => handleSubmit(newValue)}>
                 <DoneRoundedIcon/>
               </IconButton>
               <IconButton onClick={handleCancel}>
